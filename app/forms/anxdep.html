@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Ptj Care</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <link href="justified-nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+
+    <style>
+    ul.a {
+        list-style-type: circle;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Hem</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="javascript:void(0);" ng-click="navigateDetail(ssn,fname,surname)">Redigera</a></li>
+            <li><a href="javascript:void(0);" ng-click="navigateSteps(ssn,fname,surname)">Stegstatistik</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">Formulär
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0);" ng-click="navigateAsthma(ssn,fname,surname)">Astma</a></li>
+                <li class="active"><a href="javascript:void(0);" ng-click="navigateAnxdep(ssn,fname,surname)">Ångest och Depression</a></li>
+              </ul>
+            <li><a href="javascript:void(0);" ng-click="navigateMsg(ssn,fname,surname)">Meddelanden</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <canvas id="line" class="chart chart-line" chart-data="stepdata"
+        chart-labels="labels" chart-legend="true" chart-series="series"
+        chart-click="onClick" >
+      </canvas>
+
+      <table class="table table-striped">
+          <thead style="background-color: #00ADD0;">
+            <tr>
+              <td style="width: 30px;"></td>
+              <td>Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat-start="forms in formarray" ng-hide="forms.loaded">
+              <td>
+                <button ng-if="forms.expanded" ng-click="forms.expanded = false">-</button>
+                <button ng-if="!forms.expanded" ng-click="forms.expanded = true">+</button>
+              </td>
+              <td>{{forms.timestamp | date:'HH:mm dd-MM-yyyy'}}</td>
+            </tr>
+            <tr ng-if="forms.expanded" ng-repeat-end="">
+              <td colspan="2">
+                <li> <b>Å. Jag känner mig spänd och nervös </b><br> {{forms.question1}}</li><br>
+                <li> <b>D. Allting känns trögt </b><br> {{forms.question2}}</li><br>
+                <li> <b>Å. Jag känner mig orolig, som om jag hade fjärilar i magen </b><br> {{forms.question3}}</li><br>
+                <li> <b>D. Jag uppskattar fortfarande saker jag tidigare uppskattat </b><br> {{forms.question4}}</li><br>
+                 <li><b>Å. Jag har en känsla av att något hemskt kommer att hända </b><br> {{forms.question5}}</li><br>
+                 <li><b>D. Jag har tappat intresset för hur jag ser ut </b><br> {{forms.question6}}</li><br>
+                 <li><b>Å. Jag känner mig rastlös </b><br> {{forms.question7}}</li><br>
+                 <li><b>D. Jag kan skratta och se det roliga i saker och ting </b><br> {{forms.question8}}</li><br>
+                 <li><b>Å. Jag bekymrar mig över saker </b><br> {{forms.question9}}</li><br>
+                 <li><b>D. Jag ser med glädje fram emot saker och ting </b><br> {{forms.question10}}</li><br>
+                 <li><b>Å. Jag får plötsliga panikkänslor </b><br> {{forms.question11}}</li><br>
+                 <li><b>D. Jag känner mig på gott humör </b><br> {{forms.question12}}</li><br>
+                 <li><b>Å. Jag kan sitta stilla och känna mig avslappnad </b><br> {{forms.question13}}</li><br>
+                 <li><b>Å. Jag kan uppskatta en god bok, ett TV- eller radioprogram </b><br> {{forms.question14}}</li></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+</body></html>

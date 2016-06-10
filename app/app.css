@@ -1,0 +1,86 @@
+/* app css stylesheet */
+
+@import url('http://getbootstrap.com/dist/css/bootstrap.css');
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+.col-xs-8,
+.centerChat {
+ margin-left: 16.67%;
+}
+
+.doctor {
+    background-color: #00ADD0;
+}
+
+.alignChatBubbleDoctor {
+  margin-right: 15%;
+}
+
+.alignChatBubblePatient {
+  margin-left: 15%;
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.wrapper{
+  padding-top: 100px;
+}
+
+.header{
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #00ADD0;
+  z-index: 9999;
+}
+
+img.banner{
+  display: block;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.fa {
+  color:#fff;
+}
+
+#userList {
+  display:none;
+}
+
+#loader {
+  position:absolute;
+  z-index:2;
+  width:100%;
+  text-align:center;
+  top:40%;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Ptj Care</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <link href="justified-nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+
+    <style>
+    ul.a {
+        list-style-type: circle;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Hem</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="javascript:void(0);" ng-click="navigateDetail(ssn,fname,surname)">Redigera</a></li>
+            <li><a href="javascript:void(0);" ng-click="navigateSteps(ssn,fname,surname)">Stegstatistik</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">Formulär
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="javascript:void(0);" ng-click="navigateAsthma(ssn,fname,surname)">Astma</a></li>
+                <li><a href="javascript:void(0);" ng-click="navigateAnxdep(ssn,fname,surname)">Ångest och Depression</a></li>
+              </ul>
+            <li><a href="javascript:void(0);" ng-click="navigateMsg(ssn,fname,surname)">Meddelanden</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <canvas id="line" class="chart chart-line" chart-data="stepdata"
+        chart-labels="labels" chart-legend="true" chart-series="series"
+        chart-click="onClick" >
+      </canvas>
+
+      <table class="table table-striped">
+          <thead style="background-color: #00ADD0;">
+            <tr>
+              <td style="width: 30px;"></td>
+              <td>Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat-start="forms in formarray" ng-hide="forms.loaded">
+              <td>
+                <button ng-if="forms.expanded" ng-click="forms.expanded = false">-</button>
+                <button ng-if="!forms.expanded" ng-click="forms.expanded = true">+</button>
+              </td>
+              <td>{{forms.timestamp | date:'HH:mm dd-MM-yyyy'}}</td>
+            </tr>
+            <tr ng-if="forms.expanded" ng-repeat-end="">
+              <td colspan="2">
+                <li> <b>Under de senaste fyra veckorna, hur stor del av tiden har du hindrats av din astma från att utföra dina normala aktiviteter på arbetet, i skolan eller hemma? </b><br> {{forms.question1}}</li><br>
+                <li> <b>Under de senaste fyra veckorna, hur ofta har du varit andfådd/upplevt andnöd? </b><br> {{forms.question2}}</li><br>
+                <li> <b>Under de senaste fyra veckorna, hur ofta har du vaknat av dina astmasymtom (väsande andning, hosta, andfåddhet/andnöd, täthetskänsla eller värk i bröstet) under natten eller tidigare än vanligt på morgonen? </b><br> {{forms.question3}}</li><br>
+                <li> <b>Under de senaste fyra veckorna, hur ofta har du använt din kortverkande luftrörsvidgare (som t.ex. Bricanyl, Ventoline, Airomir)? </b><br> {{forms.question4}}</li><br>
+                 <li><b>Hur skulle du bedöma din astmakontroll under de senaste fyra veckorna? </b><br> {{forms.question5}}</td></li>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+</body></html>

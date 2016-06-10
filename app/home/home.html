@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Ptj Care</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <link href="justified-nav.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+      <table class="table table-striped">
+          <tr>
+            <th>Detaljerad</th>
+            <th>Ta bort</th>
+            <th>Personnummer</th>
+            <th>Förnamn</th>
+            <th>Efternamn</th>
+          </tr>
+            <tr ng-repeat="user in listOfUsers">
+              <td>
+                <button class="w3-btn w3-ripple" ng-click="detail(user.ssn,user.fname,user.surname)">&#9998; </button>
+              </td>
+              <td>
+                <button class="w3-btn w3-ripple" ng-click="remove(user.ssn)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Ta bort
+                </button>
+              </td>
+              <td>{{ user.ssn }}</td>
+              <td>{{ user.fname }}</td>
+              <td>{{ user.surname }}</td>
+            </tr>
+        </table>
+        <div class="form-group">
+        <form novalidate>
+          <label for="ssn">Personnummer</label>
+          <input type="text" id="ssn" class="form-control" ng-model="ssn"><br>
+          <label for="fname">Förnamn</label>
+          <input type="text" id="fname" class="form-control" ng-model="fname"><br>
+          <label for="surname">Efternamn</label>
+          <input type="text" id="surname" class="form-control" ng-model="surname">
+          <br>
+          <button class="btn btn-info" ng-click="saveData(ssn, fname, surname)">Spara</button>
+        </form>
+        </div>
+
+    </div>
+
+</body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Ptj Care</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+
+    <link href="justified-nav.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Hem</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="javascript:void(0);" ng-click="navigateDetail(ssn,fname,surname)">Redigera</a></li>
+            <li><a href="javascript:void(0);" ng-click="navigateSteps(ssn,fname,surname)">Stegstatistik</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">Formulär
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:void(0);" ng-click="navigateAsthma(ssn,fname,surname)">Astma</a></li>
+                <li><a href="javascript:void(0);" ng-click="navigateAnxdep(ssn,fname,surname)">Ångest och Depression</a></li>
+              </ul>
+            </li>
+            <li><a href="javascript:void(0);" ng-click="navigateMsg(ssn,fname,surname)">Meddelanden</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="form-group">
+      <form novalidate>
+        <label for="ssn">Personnummer</label>
+        <input type="text" id="ssn" class="form-control" ng-model="ssn" disabled="true"><br>
+        <label for="fname">Förnamn</label>
+        <input type="text" id="fname" class="form-control" ng-model="fname"><br>
+        <label for="surname">Efternamn</label>
+        <input type="text" id="surname" class="form-control" ng-model="surname">
+        <br>
+        <button class="btn btn-info" ng-click="saveData(ssn, fname, surname)">Spara</button>
+      </form>
+      </div>
+      <table class="table table-striped">
+          <tr>
+            <th>Ta bort</th>
+            <th>Kod</th>
+          </tr>
+            <tr ng-repeat="user in listOfUsers">
+              <td>
+                <button type="button" class="btn btn-default" ng-click="deleteDevice(user.code)">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Ta bort
+                </button>
+              </td>
+              <td>{{ user.code }}</td>
+            </tr>
+        </table>
+        <button class="btn btn-info" ng-click="addDevice(ssn)">Ny enhet</button>
+
+    </div>
+
+</body></html>
